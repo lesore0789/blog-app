@@ -16,20 +16,28 @@ router.get("/", function(req, res){
 });
 
 //New Route
-router.get("/new", function(req, res){
+router.get("/new", isLoggedIn, function(req, res){
     res.render("blogs/new");
 });
 
 //Create Route
-router.post("/", function(req, res){
+router.post("/", isLoggedIn, function(req, res){
+    // get data from form and add to blogs array
+    var title = req.body.title;
+    var image = req.body.image;
+    var body = req.body.body;
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    var newBlogPost = {title: title, image: image, body: body, author: author};
     //create blog
-    req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.create(req.body.blog, function(err, newBlog){
+    Blog.create(newBlogPost, function(err, newBlog){
         if(err){
-        res.render("blogs/new");
+            res.render("blogs/new");
         } else {
-        //then redirect to the index
-        res.redirect("/blogs");
+            //then redirect to the index
+            res.redirect("/blogs");
         }
     });
 });
@@ -79,5 +87,13 @@ router.delete("/:id", function(req, res){
         }
     });  
 });
+
+//Middleware
+function isLoggedIn(req, res, next){
+    if(req.isAuthenticated()){
+      return next();
+    }
+    res.redirect("/login");
+};
 
 module.exports = router;
