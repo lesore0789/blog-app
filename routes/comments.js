@@ -7,6 +7,7 @@ var Comment = require("../models/comment");
 
 //New
 router.get("/new", isLoggedIn, function(req, res){
+    //find blog by ID
     Blog.findById(req.params.id, function(err, blog){
         if(err){
         console.log(err);
@@ -27,9 +28,16 @@ router.post("/", isLoggedIn, function(req, res){
             if(err){
             console.log(err);
             } else {
-            blog.comments.push(comment);
-            blog.save();
-            res.redirect("/blogs/" + blog._id);
+                // Add username and ID to comment
+                comment.author.id = req.user._id;
+                comment.author.username = req.user.username;
+                // Save comment
+                comment.save();
+                // Connect new coment to blog
+                blog.comments.push(comment);
+                blog.save();
+                // Redirect to blog show page
+                res.redirect("/blogs/" + blog._id);
             }
         });
         }
