@@ -66,8 +66,15 @@ router.get("/:id/edit", function(req, res){
 
 // Update Route
 router.put("/:id", function(req, res){
-    req.body.blog.body = req.sanitize(req.body.blog.body);
-    Blog.findByIdAndUpdate(req.params.id, req.body.blog, function(err, updatedBlog){
+    var title = req.body.title;
+    var image = req.body.image;
+    var body = req.body.body;
+    var author = {
+        id: req.user._id,
+        username: req.user.username
+    };
+    var blogPost = {title: title, image: image, body: body, author: author};
+    Blog.findByIdAndUpdate(req.params.id, blogPost, function(err, updatedBlog){
         if(err){
         res.redirect("/blogs");
         } else {
