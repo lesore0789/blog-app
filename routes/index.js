@@ -14,15 +14,16 @@ router.get("/register", function(req, res){
     res.render("register");
 });
 
-//handle sign up logic
+//Handle sign up logic
 router.post("/register", function(req, res){
     var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user){
         if(err){
-        console.log(err);
+        req.flash("error", err.message);
         return res.render("register");
         }
         passport.authenticate("local")(req, res, function(){
+        req.flash("success", "Sucessfully signed up! Nice to meet you " + user.username);    
         res.redirect("/blogs");
         });
     });
@@ -45,15 +46,10 @@ router.post("/login", passport.authenticate("local",
 // Logout
 router.get("/logout", function(req, res){
     req.logout();
+    req.flash("success", "Logged You Out!");
     res.redirect("/blogs");
 });
 
-//Middleware
-function isLoggedIn(req, res, next){
-    if(req.isAuthenticated()){
-        return next();
-    }
-    res.redirect("/login");
-};
+
 
 module.exports = router;
