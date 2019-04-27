@@ -9,7 +9,7 @@
                 <img src="<%= blog.image %>" class="img-fluid" alt="Responsive image">
             </div>
             <div class="lead pb-3">
-                <span><%=blog.created.toDateString() %></span>
+                <span><%= moment(blog.created).calendar() %></span>
             </div>
             <div class="description mb-3">
                 <!-- you put a dash instead of a = to allow html  -->
@@ -39,6 +39,7 @@
                                     <p class="card-text font-weight-light"><%= comment.text %></p>
                                 </div> 
                                 <div class="float-right"> 
+                                    <p><%= moment(comment.created).calendar() %></p>
                                     <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                                         <a href="/blogs/<%=blog._id %>/comments/<%= comment._id %>/edit" 
                                             class="btn btn-xs btn-warning">Edit
