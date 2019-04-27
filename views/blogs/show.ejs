@@ -4,6 +4,7 @@
     <div class="row justify-content-center py-4">
         <div class="col-lg-10 col-md-12 rounded border py-4">
             <h2 class="text-center"><%= blog.title %></h2>
+            <h5>Written by: <%= blog.author.username %></h5>
             <div class="rounded">
                 <img src="<%= blog.image %>" class="img-fluid" alt="Responsive image">
             </div>
@@ -14,10 +15,12 @@
                 <!-- you put a dash instead of a = to allow html  -->
                 <p><%- blog.body %></p> 
             </div>
-            <a class="btn btn-warning" href="/blogs/<%= blog._id%>/edit">Edit</a>
-            <form id="delete" action="/blogs/<%= blog._id%>?_method=DELETE" method="post">
-                <button class="btn btn-danger">Delete</button>
-            </form>
+            <% if(currentUser && blog.author.id.equals(currentUser._id)){ %>
+                <a class="btn btn-warning" href="/blogs/<%= blog._id%>/edit">Edit</a>
+                <form class="delete-form" action="/blogs/<%= blog._id%>?_method=DELETE" method="post">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            <% } %>
         </div>
     </div>
     <div class="card">
@@ -27,18 +30,27 @@
             </div>
             <hr>
             <div class="row"> 
-            <% blog.comments.forEach(function(comment){ %>
-                <div class="col-md-12 mb-2"> 
-                    <div class="card"> 
-                        <div class="card-body"> 
-                            <div class="float-left"> 
-                            <p class="card-title"><%= comment.author.username %></p>
-                            <p class="card-text font-weight-light"><%= comment.text %></p>
-                            </div> 
-                        
+                <% blog.comments.forEach(function(comment){ %>
+                    <div class="col-md-12 mb-2"> 
+                        <div class="card"> 
+                            <div class="card-body"> 
+                                <div class="float-left"> 
+                                    <p class="card-title"><%= comment.author.username %></p>
+                                    <p class="card-text font-weight-light"><%= comment.text %></p>
+                                </div> 
+                                <div class="float-right"> 
+                                    <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
+                                        <a href="/blogs/<%=blog._id %>/comments/<%= comment._id %>/edit" 
+                                            class="btn btn-xs btn-warning">Edit
+                                        </a>
+                                        <form class="delete-form" action="/blogs/<%=blog._id %>/comments/<%= comment._id %>?_method=DELETE" method="POST">
+                                            <input type="submit" class="btn btn-xs btn-danger" value="Delete">
+                                        </form>
+                                    <% } %>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
                 <% }) %>
             </div>
         </div>
@@ -47,9 +59,3 @@
 
 
 <% include ../partials/footer %>
-
-    <!-- <div>
-            <% blog.comments.forEach(function(comment){ %>
-                <p><strong><%= comment.author %></strong> - <%= comment.text %> </p>
-            <% }) %>
-    </div> -->
