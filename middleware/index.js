@@ -12,7 +12,7 @@ middlewareObj.checkBlogOwnership = function(req, res, next){
                 res.redirect("back");
             } else {
                 //Does user own the blog post?
-                if(foundBlog.author.id.equals(req.user._id)){
+                if(foundBlog.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 } else {
                     req.flash("error", "You're Not the Blog Post Author");
@@ -33,7 +33,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
                 res.redirect("back");
             } else {
                 // Does user own the comment?
-                if(foundComment.author.id.equals(req.user._id)){
+                if(foundComment.author.id.equals(req.user._id) || req.user.isAdmin){
                     next();
                 } else {
                     req.flash("error", "You Are Not Author of the Comment")
