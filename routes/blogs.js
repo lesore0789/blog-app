@@ -17,12 +17,12 @@ router.get("/", function(req, res){
 });
 
 //New Route
-router.get("/new", middleware.isLoggedIn, function(req, res){
+router.get("/new", middleware.isAnAdmin, function(req, res){
     res.render("blogs/new");
 });
 
 //Create Route
-router.post("/", middleware.isLoggedIn, function(req, res){
+router.post("/", middleware.isAnAdmin, function(req, res){
     // get data from form and add to blogs array
     var title = req.body.title;
     var image = req.body.image;

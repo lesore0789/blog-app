@@ -42,9 +42,23 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
             }
         });
     } else {
-        req.flash("error", "Please log in first")
+        req.flash("error", "Please log in first");
         res.redirect("back");
     }
+};
+
+middlewareObj.isAnAdmin = function(req, res, next){
+    if(req.isAuthenticated()){
+        if(req.user.isAdmin) {
+            next();
+        } else {
+            req.flash("error", "You need to be an Admin to do that");
+            res.redirect("back");
+        }
+    } else {
+        req.flash("error", "Please log in first");
+        res.redirect("back");
+    };
 };
 
 middlewareObj.isLoggedIn = function(req, res, next){
