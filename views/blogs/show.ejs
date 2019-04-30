@@ -2,15 +2,16 @@
 
 <div class="container">
     <div class="row justify-content-center py-4">
-        <div class="col-lg-10 col-md-12 rounded border py-4">
-            <h2 class="text-center"><%= blog.title %></h2>
+        <div class="col-lg-11 col-md-12 rounded border py-4">
+            <h2><%= blog.title %></h2>
             <h5>Written by: <%= blog.author.username %></h5>
+            <div class="lead pb-3">
+                <span><%= moment(blog.created).format('MMMM Do, YYYY h:mma') %></span>
+            </div>
             <div class="rounded">
                 <img src="<%= blog.image %>" class="img-fluid" alt="Responsive image">
             </div>
-            <div class="lead pb-3">
-                <span><%= moment(blog.created).calendar() %></span>
-            </div>
+
             <div class="description mb-3">
                 <!-- you put a dash instead of a = to allow html  -->
                 <p><%- blog.body %></p> 
@@ -39,7 +40,7 @@
                                     <p class="card-text font-weight-light"><%= comment.text %></p>
                                 </div> 
                                 <div class="float-right"> 
-                                    <p><%= moment(comment.created).calendar() %></p>
+                                    <p><%= moment(comment.created).format('M/D/YY [at] h:mma') %></p>
                                     <% if(currentUser && comment.author.id.equals(currentUser._id)){ %>
                                         <a href="/blogs/<%=blog._id %>/comments/<%= comment._id %>/edit" 
                                             class="btn btn-xs btn-warning">Edit
