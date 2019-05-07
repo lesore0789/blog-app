@@ -1,6 +1,15 @@
-
-.container.main{
-    margin-top: 7.0em; 
+#banner{
+    background-image: url("https://images.pexels.com/photos/1640774/pexels-photo-1640774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.377);
+    height: 75vh;
+    margin-top: -30px;
 }
 
 .delete-form {
