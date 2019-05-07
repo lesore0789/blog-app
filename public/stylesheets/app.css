@@ -6,7 +6,7 @@ html{
 
 body{
     font-family: 'Montserrat', sans-serif;
-    background-color: #E8EFEF;
+    background-color: #ECF2F2;
     margin-bottom: 60px;
 }
 
@@ -89,6 +89,10 @@ img.card-img {
     margin-bottom: 10px;
     border-top-left-radius: 0;
     border-top-right-radius: 0;
+}
+
+.container .row #blog-post{
+    background-color: white;
 }
 
 h5.card-title .blog-title{
