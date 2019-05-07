@@ -3,8 +3,8 @@
 <div class="container">
     <div class="row justify-content-center py-4">
         <div class="col-lg-11 col-md-12 rounded border py-4">
-            <h2><%= blog.title %></h2>
-            <h5>Written by: <%= blog.author.username %></h5>
+            <h2 class="title"><%= blog.title %></h2>
+            <h5 class="author">Written by: <%= blog.author.username %></h5>
             <div class="lead pb-3">
                 <span><%= moment(blog.created).format('MMMM Do, YYYY h:mma') %></span>
             </div>
