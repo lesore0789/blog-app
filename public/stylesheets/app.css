@@ -149,6 +149,12 @@ h5.author, div.lead span {
     font-size: 15px;
 }
 
+.card .card-body .float-left {
+    font-family: 'Open Sans', sans-serif;
+}
+.card .card-body .float-left .card-title {
+    font-weight: 700;
+}
 
 
 
