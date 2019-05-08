@@ -17,7 +17,8 @@ blogRoutes = require("./routes/blogs"),
 indexRoutes = require("./routes/index");
 
 // App Config
-mongoose.connect("mongodb://localhost:27017/blog_app", {useNewUrlParser: true});
+var url = process.env.DATABASEURL || "mongodb://localhost:27017/blog_app";
+mongoose.connect(url, { useNewUrlParser: true });
 mongoose.set('useFindAndModify', false);
 app.set("view engine", "ejs");
 app.use(express.static("public"));
