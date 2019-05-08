@@ -47,6 +47,11 @@ nav.navbar.navbar-custom{
 .footer .container .text-muted {
     margin: 40px 25% 5px;
     justify-items: center;
+    font-size: 14px;
+}
+
+i.fab{
+    font-size: 25px;
 }
 
 .delete-form {
