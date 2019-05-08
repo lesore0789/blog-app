@@ -6,7 +6,7 @@
             <h2 class="title"><%= blog.title %></h2>
             <h5 class="author">Written by: <%= blog.author.username %></h5>
             <div class="lead pb-3">
-                <span><%= moment(blog.created).format('MMMM Do, YYYY h:mma') %></span>
+                <span><%= moment(blog.created).format('MMMM Do, YYYY') %></span>
             </div>
             <div class="rounded">
                 <img src="<%= blog.image %>" class="img-fluid" alt="Responsive image">
@@ -40,7 +40,7 @@
                                     <p class="card-text font-weight-light"><%= comment.text %></p>
                                 </div> 
                                 <div class="float-right"> 
-                                    <p><%= moment(comment.created).format('M/D/YY [at] h:mma') %></p>
+                                    <p><%= moment(comment.created).format('M/D/YY') %></p>
                                     <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
                                         <a href="/blogs/<%=blog._id %>/comments/<%= comment._id %>/edit" 
                                             class="btn btn-xs btn-warning">Edit
