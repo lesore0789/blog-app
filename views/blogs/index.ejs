@@ -16,7 +16,7 @@
                             <h5 class="card-title"><a class="blog-title" href="/blogs/<%= blog._id %>"><%=blog.title%></a></h5>
                             <p class="card-text"><%- blog.body.substring(0,100) %>...</p>
                             <p class="card-text"><small class="text-muted"><%=blog.created.toDateString() %></small></p>
-                            <a class="btn btn-outline-success" href="/blogs/<%= blog._id %>">
+                            <a class="btn btn-outline-dark" href="/blogs/<%= blog._id %>">
                                 Read More
                                 <i class="fas fa-angle-double-right"></i>
                             </a>
