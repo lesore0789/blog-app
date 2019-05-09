@@ -1,4 +1,11 @@
-This is a blog application where users can sign up and create a username so they can comment on the blog posts. This application only allows the Admin to create, edit, and delete new blog posts.
+This is a blog application where users can sign up and create a username so they can comment on the blog posts. 
+
+This application only allows the Admin to create, edit, and delete new blog posts. The code to create a new Admin user has been commented out, but it can be found on the [register file](https://github.com/lesore0789/blog-app/blob/master/views/register.ejs) and on the [index route file](https://github.com/lesore0789/blog-app/blob/master/routes/index.js). Please keep in mind that you will need to create an environment variable for your own ADMINCODE. 
+
+## Live Deploy
+
+Deployed with [Heroku](https://www.heroku.com/).
+If you'd like to preview the live version, please click [here](https://tgcblog.herokuapp.com/). 
 
 ## App Features
 
